@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from robot import initServo, moveServo
+from motor import initServo, moveServo
 
 app = Flask(__name__)
 
