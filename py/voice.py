@@ -1,7 +1,7 @@
 import os
 from google.cloud import texttospeech
 
-def create_female_japanese_voice_samples(sample_text, output_dir="japanese_voice_samples"):
+def create_female_japanese_voice_samples(sample_text, output_dir="data/japanese_voice_samples"):
     """
     Lists all Japanese female voices and creates a sample audio file for each.
     

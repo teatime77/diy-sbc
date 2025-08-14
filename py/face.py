@@ -12,7 +12,7 @@ picam2.configure(picam2.create_preview_configuration(main={"format": 'RGB888', "
 picam2.start()
 
 # Load the Haar Cascade classifier for face detection
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+face_cascade = cv2.CascadeClassifier('data/haarcascade_frontalface_default.xml')
 
 while True:
     # Capture a frame as a NumPy array
