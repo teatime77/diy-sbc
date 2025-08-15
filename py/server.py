@@ -1,5 +1,8 @@
+from multiprocessing import Process, Queue
 from flask import Flask, render_template, request, jsonify
 from motor import initServo, moveServo
+from face import detect_face
+from queue_manager import init_queue
 
 app = Flask(__name__)
 
@@ -9,6 +12,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    # print(queue.get())
     return render_template('diagram.html')
 
 @app.route('/user/<username>')
@@ -22,8 +26,10 @@ def send_data():
         command = data.get('command')
         if command == "init":
             return handleInit(data)
-        if command == "servo":
+        elif command == "servo":
             return handleServo(data)
+        elif command == "status":
+            return handleStatus(data)
     else:
         return jsonify({"message": "Request must be JSON.", "status": "error"}), 400
 
@@ -60,5 +66,15 @@ def handleServo(data):
     response_message = f"Data received. channel:{channel} value:{value}"
     return jsonify({"message": response_message, "status": "success"}), 200
 
-if __name__ == '__main__':
+def handleStatus(data):
+    if queue.empty():
+        queue_data = {}    
+    else:
+        queue_data = queue.get()
+        
+    return jsonify({"status": "success", "queue": queue_data}), 200
+
+if __name__ == '__main__':    
+    queue = init_queue()
+
     app.run(debug=True, host='0.0.0.0', port=5000)
