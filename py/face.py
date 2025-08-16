@@ -28,7 +28,7 @@ def detect_face():
 
         rgb_array = frame[:, :, ::-1]
         image_pil = Image.fromarray(rgb_array, 'RGB')
-        image_file_name = f"image-{idx}.png"
+        image_file_name = f"image-{idx % 20}.png"
         image_pil.save(f"static/lib/diagram/img/{image_file_name}")
 
         # Convert the frame to grayscale for face detection
@@ -43,8 +43,15 @@ def detect_face():
         )
 
         # Draw rectangles around detected faces
+        img_width, img_height = image_pil.size
+        cx = img_width  / 2
+        cy = img_height / 2
+        max_x = max_y = max_w = max_h = 0
         for (x, y, w, h) in faces:
             cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
+
+            if max_w * max_h < w * h:
+                max_x, max_y, max_w, max_h = x, y, w, h
 
         # Display the frame with the rectangles
         cv2.imshow('Face Detection', frame)
@@ -57,6 +64,15 @@ def detect_face():
             "idx" : idx,
             "image_file_name": image_file_name
         }
+
+        if max_w != 0 and max_h != 0:
+            face_x = int(100 * (max_x - cx) / img_width)
+            face_y = int(100 * (max_y - cy) / img_height)
+            face_w = int(100 * max_w / img_width)
+            face_h = int(100 * max_h / img_height)
+
+            data_to_send["face"] = (face_x, face_y, face_w, face_h)
+
         queue.put(data_to_send)
 
         idx += 1
