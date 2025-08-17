@@ -1,5 +1,8 @@
 import RPi.GPIO as GPIO
 import time
+from queue_manager import init_queue
+
+queue = init_queue()
 
 # GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
@@ -46,6 +49,13 @@ try:
     while True:
         distance = get_distance()
         print(f"Distance: {distance} cm")
+
+        data_to_send = {
+            "distance": distance
+        }
+
+        queue.put(data_to_send)
+
         time.sleep(1) # Wait 1 second before the next measurement
 
 except KeyboardInterrupt:

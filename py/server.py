@@ -12,7 +12,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # print(queue.get())
     return render_template('diagram.html')
 
 @app.route('/user/<username>')

@@ -1,7 +1,10 @@
 import os
 from google.cloud import texttospeech
 
-def create_female_japanese_voice_samples(sample_text, output_dir="data/japanese_voice_samples"):
+# !!!!!!!!!! export key !!!!!!!!!!
+# export GOOGLE_APPLICATION_CREDENTIALS="/home/hamada/prj/diy-sbc/py/data/key.json"
+
+def create_female_japanese_voice_samples(sample_text, output_dir="static/lib/diagram/audio"):
     """
     Lists all Japanese female voices and creates a sample audio file for each.
     
@@ -59,6 +62,6 @@ def create_female_japanese_voice_samples(sample_text, output_dir="data/japanese_
 
 if __name__ == "__main__":
     # A sample Japanese phrase with a mix of hiragana, katakana, and kanji
-    japanese_sample_text = "こんにちは。これはGoogle Cloudテキスト読み上げAPIの日本語の音声サンプルです。"
+    japanese_sample_text = "こんにちは!どうぞよろしく!"
     
     create_female_japanese_voice_samples(japanese_sample_text)
