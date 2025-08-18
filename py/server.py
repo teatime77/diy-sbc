@@ -60,6 +60,7 @@ def handleInit(data):
 def handleServo(data):
     channel = data.get('channel')
     value   = data.get('value') 
+    print(f"move servo: channel:{channel} value:{value}")
     moveServo(channel, value)
 
     response_message = f"Data received. channel:{channel} value:{value}"
@@ -67,7 +68,7 @@ def handleServo(data):
 
 def handleStatus(data):
     if queue.empty():
-        queue_data = {}    
+        queue_data = None
     else:
         queue_data = queue.get()
         

@@ -70,6 +70,9 @@ def initServo():
     print("servo init")
 
 def moveServo(channel, angle):
+    if servo is None:
+        initServo()
+        
     servo.move(channel, angle)
 
 if __name__ == '__main__':

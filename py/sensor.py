@@ -46,17 +46,21 @@ def get_distance():
     return distance
 
 try:
+    idx = 0
     while True:
         distance = get_distance()
-        print(f"Distance: {distance} cm")
+        print(f"Distance: {idx} {distance} cm")
 
         data_to_send = {
+            "idx": idx,
             "distance": distance
         }
 
         queue.put(data_to_send)
 
         time.sleep(1) # Wait 1 second before the next measurement
+
+        idx += 1
 
 except KeyboardInterrupt:
     print("Measurement stopped by user")
