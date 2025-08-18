@@ -28,12 +28,20 @@ def get_distance():
     GPIO.output(TRIG_PIN, False)
 
     # Wait for ECHO to go HIGH
+    hi = 0
     while GPIO.input(ECHO_PIN) == 0:
         pulse_start = time.time()
+        hi += 1
+        if 10000 < hi:
+            return None
     
     # Wait for ECHO to go LOW
+    lo = 0
     while GPIO.input(ECHO_PIN) == 1:
         pulse_end = time.time()
+        lo += 1
+        if 10000 < lo:
+            return None
 
     # Calculate pulse duration
     pulse_duration = pulse_end - pulse_start
@@ -42,6 +50,7 @@ def get_distance():
     # Distance = time * speed / 2 (since it's a round trip)
     distance = pulse_duration * 17150
 
+    # print(F"hi:{hi} lo:{lo}")
     distance = round(distance, 2)
     return distance
 
@@ -50,6 +59,8 @@ try:
     while True:
         distance = get_distance()
         print(f"Distance: {idx} {distance} cm")
+        if distance is None:
+            continue
 
         data_to_send = {
             "idx": idx,
