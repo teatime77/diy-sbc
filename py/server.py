@@ -1,14 +1,9 @@
 from multiprocessing import Process, Queue
 from flask import Flask, render_template, request, jsonify
 from motor import initServo, moveServo
-from face import detect_face
 from queue_manager import init_queue
 
 app = Flask(__name__)
-
-# @app.route('/')
-# def hello_world():
-#     return 'Hello, World from Flask!'
 
 @app.route('/')
 def index():

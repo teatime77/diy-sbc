@@ -1,6 +1,5 @@
-from multiprocessing import Queue
-import cv2
 from picamera2 import Picamera2
+import cv2
 from PIL import Image
 from queue_manager import init_queue
 
