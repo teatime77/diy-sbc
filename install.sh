@@ -20,7 +20,7 @@ echo "To avoid mismatches between picamera2 and opencv versions, use the global 
 python3 -m venv ./env --system-site-packages
 
 echo "enter the virtual environment"
-source ./env/bin/activate
+. ./env/bin/activate
 
 echo "install I2C and servo motor libraries"
 pip3 install adafruit-blinka adafruit-circuitpython-pca9685 adafruit-circuitpython-servokit RPi.GPIO
@@ -32,7 +32,7 @@ echo "install Joystick libraries"
 pip3 install pygame
 
 echo "install audio libraries"
-pip3 pydub
+pip3 install pydub
 
 echo "install Google Cloud Text-to-Speech API"
 pip3 install gtts
