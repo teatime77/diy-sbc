@@ -53,7 +53,7 @@ def detect_face():
                 max_x, max_y, max_w, max_h = x, y, w, h
 
         # Display the frame with the rectangles
-        cv2.imshow('Face Detection', frame)
+        # cv2.imshow('Face Detection', frame)
         
         # Break the loop if the 'q' key is pressed
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -73,6 +73,7 @@ def detect_face():
             data_to_send["face"] = (face_x, face_y, face_w, face_h)
 
         queue.put(data_to_send)
+        print(f"camera idx:{idx}")
 
         idx += 1
 

@@ -8,7 +8,7 @@ queue = init_queue()
 GPIO.setmode(GPIO.BCM)
 
 # Set GPIO Pins for Trigger and Echo
-TRIG_PIN = 17  # Example, change to your chosen pin
+TRIG_PIN = 14  # Example, change to your chosen pin
 ECHO_PIN = 18  # Example, change to your chosen pin
 
 # Set up GPIO direction
