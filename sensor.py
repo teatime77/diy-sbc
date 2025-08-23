@@ -57,7 +57,7 @@ def get_distance():
 try:
     idx = 0
     while True:
-        distance = round( get_distance() )
+        distance = get_distance()
         print(f"Distance: {idx} {distance} cm")
         if distance is None:
             continue
