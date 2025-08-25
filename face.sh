@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. env/bin/activate
+
 ./stop.sh
 trap './stop.sh' INT
 
