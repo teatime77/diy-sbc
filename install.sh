@@ -4,7 +4,7 @@ echo "update package index files"
 sudo apt update
 
 echo "upgrade packages"
-sudo apt upgrade
+sudo apt upgrade -y
 
 echo "enable ssh server"
 sudo raspi-config nonint do_ssh 0
@@ -30,11 +30,3 @@ pip3 install Flask
 
 echo "install Joystick libraries"
 pip3 install pygame
-
-echo "install audio libraries"
-pip3 install pydub
-
-echo "install Google Cloud Text-to-Speech API"
-pip3 install gtts
-
-chmod +x *.sh
