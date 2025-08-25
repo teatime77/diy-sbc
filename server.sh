@@ -3,7 +3,7 @@
 . env/bin/activate
 
 sh ./stop.sh
-trap './stop.sh' INT
+trap 'sh ./stop.sh' INT
 
 sleep 5
 
