@@ -36,3 +36,5 @@ pip3 install pydub
 
 echo "install Google Cloud Text-to-Speech API"
 pip3 install gtts
+
+chmod +x *.sh
